@@ -50,7 +50,7 @@ class TestHasher:
         # Add a file with contents
         file = Path(folder / "testfile.txt")
         with file.open(mode="wt") as f:
-            f.write("Some text in a file.")
+            f.write("Some text in a file.\n")
             f.write("Another line of text.")
 
         # Create an empty folder
