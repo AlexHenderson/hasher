@@ -39,29 +39,66 @@ class TestHasher:
             out = Hasher._normalise_hash_type('')
 
     def test_file_exists(self):
-        afile = Path(r"..\testdata\test1\subfolder1\testfile.txt")
-        afolder = Path(r"..\testdata\test1\subfolder1")
-        nonexistentfile = Path(r"..\testdata\test1\subfolder1\blahblah.txt")
-        nonexistentfolder = Path(r"..\testdata\test1\subfolder1blahblah")
 
-        h = Hasher()
-        h._source = afile
-        out = h._file_or_folder()
-        assert out == 'file'
+        # Empty folders are not version controlled by Git. Therefore, we create a folder structure to test the ability
+        # of this package to create a hash of an empty folder.
 
+        # Create folder structure and add a file to it
+        folder = Path(r"..\testdata\folder\subfolder")
+        folder.mkdir(parents=True, exist_ok=True)
+
+        # Add a file with contents
+        file = Path(folder / "testfile.txt")
+        with file.open(mode="wt") as f:
+            f.write("Some text in a file.")
+            f.write("Another line of text.")
+
+        # Create an empty folder
+        empty_folder = Path(r"..\testdata\folder\emptysubfolder")
+        empty_folder.mkdir(parents=True, exist_ok=True)
+
+        # Create an empty file
+        empty_file = Path(folder / "empty_file.txt")
+        empty_file.touch()
+
+        # Define a file and a folder that do not actually exist
+        nonexistent_file = Path(r"..\testdata\folder\subfolder\blahblah.txt")
+        nonexistent_folder = Path(r"..\testdata\folder\blahblah")
+
+        # Test a folder is identified as a 'folder'
         h = Hasher()
-        h._source = afolder
+        h._source = folder
         out = h._file_or_folder()
         assert out == 'folder'
 
+        # Test a file is identified as a 'file'
+        h = Hasher()
+        h._source = file
+        out = h._file_or_folder()
+        assert out == 'file'
+
+        # Test an empty folder is identified as a 'folder'
+        h = Hasher()
+        h._source = empty_folder
+        out = h._file_or_folder()
+        assert out == 'folder'
+
+        # Test an empty file is identified as a 'file'
+        h = Hasher()
+        h._source = empty_file
+        out = h._file_or_folder()
+        assert out == 'file'
+
+        # Test we throw an exception when a file does not exist
         with pytest.raises(FileNotFoundError):
             h = Hasher()
-            h._source = nonexistentfile
+            h._source = nonexistent_file
             out = h._file_or_folder()
 
+        # Test we throw an exception when a folder does not exist
         with pytest.raises(FileNotFoundError):
             h = Hasher()
-            h._source = nonexistentfolder
+            h._source = nonexistent_folder
             out = h._file_or_folder()
 
     def test__normalise_source(self):
