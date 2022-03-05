@@ -2,7 +2,7 @@
 # Copyright (c) 2022 Alex Henderson (alex.henderson@manchester.ac.uk)
 # Licensed under the MIT License. See https://opensource.org/licenses/MIT
 # SPDX-License-Identifier: MIT
-# Version 1.0.0
+# Version 1.1.0
 # See https://github.com/AlexHenderson/hasher for the most recent version
 
 import hashlib
@@ -61,13 +61,27 @@ class Hasher:
     Copyright (c) 2022 Alex Henderson (alex.henderson@manchester.ac.uk)
     Licensed under the MIT License. See https://opensource.org/licenses/MIT
     SPDX-License-Identifier: MIT
-    Version 1.0.0
+    Version 1.1.0
     See https://github.com/AlexHenderson/hasher for the most recent version
 
     """
 
+    # Define the version of this code
+    _version = "1.1.0"
+
     # Define the default type of hash as 'sha256'
     _default_hash_type = 'sha256'
+
+    @classmethod
+    def version(cls) -> str:
+        """
+        Returns the version number of this code.
+
+        :return: The version number.
+        :rtype: str
+        """
+
+        return Hasher._version
 
     @classmethod
     def default_hash_type(cls) -> str:
@@ -77,7 +91,7 @@ class Hasher:
         :return: The default hash type.
         :rtype: str
         """
-        
+
         return Hasher._default_hash_type
 
     @classmethod
@@ -189,7 +203,7 @@ class Hasher:
         logging.info(f"Hasher >>>>>>")
 
         # Log the version of this source code
-        logging.info(f"Version: 1.0.0")
+        logging.info(f"Version: {Hasher._version}")
 
         try:
             # Normalise input

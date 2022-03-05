@@ -3,9 +3,7 @@
 Python package to generate a stable hash value for either a single file, or a folder containing many files and 
 sub-folders.
 
-Requires Python 3.7 or higher.
-
-Features:
+## Features ##
 - The default hash type is `sha256`, although the user can specify any valid hash type provided by `hashlib`.
 - A single hash is generated from a folder, regardless of how many files and sub-folders it contains.
 - For a single file, the filename can be included into the hash if required (default is not to include).
@@ -108,11 +106,19 @@ output
     hash name: md5
     hash digest: f2865fa...<snip>...6679c3
 
+## Requirements ##
+
+    python >= 3.7
+    pytest
+
+### Installation ###
+
+    pip install hasher-AlexHenderson==1.1.0
+
 
 ## Usage rights ##
 Copyright (c) 2022 Alex Henderson (alex.henderson@manchester.ac.uk)   
 Licensed under the MIT License. See https://opensource.org/licenses/MIT      
 SPDX-License-Identifier: MIT   
-Version 1.0.0   
-See https://github.com/AlexHenderson/hasher/ for the most recent version  
-
+Version 1.1.0   
+See https://github.com/AlexHenderson/hasher for the most recent version  
