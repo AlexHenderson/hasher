@@ -113,12 +113,12 @@ output
 
 ### Installation ###
 
-    pip install hasher-AlexHenderson==1.1.0
+    pip install hasher-AlexHenderson==1.1.1
 
 
 ## Usage rights ##
 Copyright (c) 2022 Alex Henderson (alex.henderson@manchester.ac.uk)   
 Licensed under the MIT License. See https://opensource.org/licenses/MIT      
 SPDX-License-Identifier: MIT   
-Version 1.1.0   
+Version 1.1.1   
 See https://github.com/AlexHenderson/hasher for the most recent version  
